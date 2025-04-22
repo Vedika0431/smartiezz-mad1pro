@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #FFE4C4; /* Bisque background */
+    color: #000000;
+    font-size: 18px; /* Increase base font size */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem; /* Larger heading size */
+    font-weight: bold;
+    color: #ffffff; /* White text color for contrast */
+    background-color: #d2691e; /* Orangish-brown background */
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem; /* Larger question header text */
+}
+
+.dynamic-width {
+    width: fit-content;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1.2rem; /* Adjust dynamic width text size */
+}
+
+.capsule-timer {
+    display: inline-block;
+    padding: 12px 40px;
+    font-size: 1.5rem; /* Larger timer font */
+    font-weight: bold;
+    color: #000;
+    background-color: #e3f2fd;
+    border-radius: 50px;
+    text-align: center;
+    width: auto;
+}
+
+form {
+    margin-top: 20px;
+}
+
+form div {
+    margin-bottom: 15px;
+    font-size: 1.3rem; /* Increased font size for options */
+}
+
+form input[type="radio"] {
+    margin-right: 12px;
+    transform: scale(1.4); /* Increased size for radio buttons */
+}
+
+form button {
+    margin-right: 15px;
+    padding: 12px 24px;
+    font-size: 1.2rem; /* Larger button text */
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #CD853F; /* Peru background */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #8B4513; /* Saddle brown on hover */
+}
+
+form button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.question-summary {
+    font-size: 1.4rem; /* Increased font size for question summary */
+    color: #555555; /* Ensure readability */
+    margin-bottom: 20px;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #CD853F;
+    font-weight: bold;
+    font-size: 1.2rem; /* Larger link text */
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #8B4513; /* Saddle brown on hover */
+}

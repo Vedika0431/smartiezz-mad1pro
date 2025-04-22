@@ -1,0 +1,107 @@
+body.quiz-result {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #FFE4C4; /* Bisque background */
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Header styling */
+.result-header {
+    width: 100%;
+    background-color: #CD853F; /* Peru background */
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.result-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* Main content styling */
+.result-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.result-box h2 {
+    font-size: 1.8rem;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.result-box p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #555555;
+}
+
+.result-box strong {
+    color: #CD853F; /* Highlighted text */
+}
+
+.result-message {
+    margin-top: 20px;
+}
+
+.result-message .message {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.result-message .green {
+    color: #28a745; /* Success green */
+}
+
+.result-message .blue {
+    color: #007bff; /* Info blue */
+}
+
+.result-message .orange {
+    color: #fd7e14; /* Warning orange */
+}
+
+.result-message .red {
+    color: #dc3545; /* Danger red */
+}
+
+/* Footer styling */
+.result-footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #F4A460; /* Sandy brown background */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.result-footer .button-link {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: #CD853F; /* Peru background */
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.result-footer .button-link:hover {
+    background-color: #8B4513; /* Saddle brown on hover */
+}

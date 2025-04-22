@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/scores.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user_dashboard.css') }}">
+</head>
+<body class="scores-page">
+
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <h2>
+            Smartizz<span class="logo">🎯</span>
+        </h2>
+        <nav>
+            <a href="{{ url_for('user_dashboard') }}">Home</a>
+            <a href="{{ url_for('scores') }}">Scores</a>
+            <a href="{{ url_for('user_summary') }}">User Summary</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+            <span>Welcome, {{ current_user.full_name }}</span>
+        </nav>
+    </header>
+
+    <!-- Header -->
+    <header class="scores-header">
+        <h1>Your Scores</h1>
+    </header>
+
+    <!-- Scores Table -->
+    <div class="scores-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Chapter</th>
+                    <th>Max Questions</th>
+                    <th>Score</th>
+                    <th>Percentage</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score, chapter_name, max_questions, score_text, percentage in scores %}
+                <tr>
+                    <td>{{ chapter_name }}</td>
+                    <td>{{ max_questions }}</td>
+                    <td>{{ score_text }}</td>
+                    <td>{{ percentage }}%</td>
+                    <td>{{ score.timestamp.strftime('%Y-%m-%d') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer -->
+    <footer class="scores-footer">
+        <a href="{{ url_for('user_dashboard') }}" class="button-link">Back to Dashboard</a>
+    </footer>
+
+</body>
+</html>
+
+
+

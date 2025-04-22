@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Summary</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <h1>Admin Summary</h1>
+
+    <!-- Bar Chart for Corrected Percentage Scores -->
+    <div>
+        <h2>Each Subject's Top Score (in %)</h2>
+        {% if top_scores_values|length == 0 %}
+            <p>No scores recorded yet.</p>
+        {% else %}
+            <canvas id="topScoresBarChart"></canvas>
+        {% endif %}
+    </div>
+
+    <!-- Pie Chart for Subject-wise User Attempts -->
+    <div>
+        <h2>Subject-wise User Attempts</h2>
+        {% if attempt_counts|length == 0 %}
+            <p>No attempts recorded yet.</p>
+        {% else %}
+            <canvas id="userAttemptsPieChart"></canvas>
+        {% endif %}
+    </div>
+
+    <a href="{{ url_for('admin_dashboard') }}">Back to Admin Dashboard</a>
+
+    <script>
+        // Bar Chart for Corrected Percentage Scores
+        {% if top_scores_values|length > 0 %}
+        new Chart(document.getElementById('topScoresBarChart'), {
+            type: 'bar',
+            data: {
+                labels: {{ subject_names | tojson }},
+                datasets: [{
+                    label: 'Top Score Percentage',
+                    data: {{ top_scores_values | tojson }},
+                    backgroundColor: '#FF5733'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Percentage (%)'
+                        }
+                    }
+                }
+            }
+        });
+        {% endif %}
+
+        // Pie Chart for User Attempts
+        {% if attempt_counts|length > 0 %}
+        new Chart(document.getElementById('userAttemptsPieChart'), {
+            type: 'pie',
+            data: {
+                labels: {{ attempt_labels | tojson }},
+                datasets: [{
+                    label: 'User Attempts per Subject',
+                    data: {{ attempt_counts | tojson }},
+                    backgroundColor: ['#FF5733', '#36A2EB', '#FFCE56', '#4CAF50', '#9C27B0']
+                }]
+            }
+        });
+        {% endif %}
+    </script>
+
+</body>
+</html>

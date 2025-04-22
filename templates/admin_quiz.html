@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Quizzes</title>
+</head>
+<body>
+
+<h2>Manage Quizzes</h2>
+
+<!-- Global Add Quiz Button -->
+<a href="{{ url_for('add_quiz_form') }}">
+    <button>Add Quiz</button>
+</a>
+
+<h3>Added Quizzes</h3>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Chapter ID</th>
+            <th>Quiz Level</th>
+            <th>Chapter Name</th>
+            <th>Question Title</th>
+            <th>Question Statement</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for quiz in added_quizzes %}
+        <tr>
+            <td>{{ quiz.chapter_id }}</td>
+            <td>{{ quiz.quiz_level }}</td>
+            <td>{{ quiz.chapter_name }}</td>
+            <td>{{ quiz.question_title }}</td>
+            <td>{{ quiz.question_statement }}</td>
+            <td>
+                <a href="{{ url_for('add_question', chapter_id=quiz.chapter_id) }}">
+                    <button>Add Question</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+
+</body>
+</html>

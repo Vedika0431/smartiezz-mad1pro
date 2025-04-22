@@ -1,0 +1,59 @@
+{% block content %}
+<h1>Add Question to Chapter: {{ chapter.name }}</h1>
+<h2>Quiz Level: {{ quiz_level_name }}</h2> <!-- Display the quiz level -->
+
+<form method="POST">
+    <label for="chapter_id">Chapter ID:</label>
+    <input type="number" id="chapter_id" name="chapter_id" value="{{ chapter.id }}" readonly>
+
+    <label for="question_title">Question Title:</label>
+    <input type="text" id="question_title" name="question_title" placeholder="Enter a short title" required>
+
+    <label for="question_summary">Question Summary:</label>
+    <textarea id="question_summary" name="question_summary" rows="3" required></textarea>
+
+    <label for="options">Options:</label>
+    <div>
+        <input type="text" id="option1" name="options[]" placeholder="Option 1" required>
+        <input type="text" id="option2" name="options[]" placeholder="Option 2" required>
+        <input type="text" id="option3" name="options[]" placeholder="Option 3" required>
+        <input type="text" id="option4" name="options[]" placeholder="Option 4" required>
+    </div>
+
+    <label for="correct_option">Correct Option (1-4):</label>
+    <input type="number" id="correct_option" name="correct_option" min="1" max="4" required>
+
+    <button type="submit">Add Question</button>
+</form>
+
+{% if questions %}
+<h3>Questions in Chapter: {{ chapter.name }}</h3>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Chapter ID</th>
+            <th>Quiz Level</th>
+            <th>Question Title</th>
+            <th>Question Summary</th>
+            <th>Options</th>
+            <th>Correct Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for question in questions %}
+        <tr>
+            <td>{{ chapter.id }}</td>
+            <td>{{ question.quiz_level_name }}</td>
+            <td>{{ question.title }}</td>
+            <td>{{ question.summary }}</td>
+            <td>{{ question.options }}</td>
+            <td>{{ question.correct_option }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+<a href="{{ url_for('admin_quiz') }}">Go Back</a> <!-- Added Go Back hyperlink -->
+<!-- <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a> -->
+{% endblock %}

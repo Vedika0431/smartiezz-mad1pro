@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quiz_result.css') }}">
+</head>
+<body class="quiz-result">
+
+    <!-- Header -->
+    <header class="result-header">
+        <h1>Quiz Result</h1>
+    </header>
+
+    <!-- Main Content -->
+    <div class="result-container">
+        <div class="result-box">
+            <h2>Chapter: {{ chapter.name if chapter else 'Unknown Chapter' }}</h2>
+            <p><strong>Correct Answers:</strong> {{ correct_answers }}/{{ total_questions }}</p>
+            <p><strong>Score Percentage:</strong> {{ percentage }}%</p>
+        </div>
+        <div class="result-message">
+            {% if percentage == 100 %}
+                <p class="message green">🎉 Amazing! You got a perfect score! Keep up the great work! 🎉</p>
+            {% elif percentage >= 75 %}
+                <p class="message blue">👏 Great job! You're doing really well. Keep pushing for perfection! 👏</p>
+            {% elif percentage >= 50 %}
+                <p class="message orange">👍 Good effort! You're halfway there. Keep practicing and you'll improve even more! 👍</p>
+            {% else %}
+                <p class="message red">💪 Don't give up! Every attempt is a step closer to success. Try again and you'll do better! 💪</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="result-footer">
+        <a href="{{ url_for('user_dashboard') }}" class="button-link">Back to Dashboard</a>
+        <a href="{{ url_for('retry_quiz', quiz_type=chapter.quizzes[0].quiz_level_name, subject_id=chapter.subject_id, chapter_id=chapter.id) }}" class="button-link">Retry Quiz</a>
+    </footer>
+
+</body>
+</html>

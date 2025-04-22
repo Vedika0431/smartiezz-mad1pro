@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Question</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quiz_question.css') }}">
+</head>
+<body>
+
+<h1>Quiz Question</h1>
+
+<div class="question-header">
+    <div>
+        <label for="question_number"><strong>QNo.:</strong></label>
+        <input type="text" id="question_number" class="dynamic-width" value="{{ question_index + 1 }}/{{ total_questions }}" readonly>
+    </div>
+    <div id="timer" class="capsule-timer">00:30:00</div>
+</div>
+
+<div>
+    <h2>{{ question.title }}</h2>
+    <p>{{ question.summary }}</p>
+</div>
+<form action="{{ url_for('quiz_question', chapter_id=chapter.id, question_index=question_index) }}" method="POST" onsubmit="return validateSelection();">
+    {% for option in question.options %}
+    <div>
+        <input type="radio" id="option{{ loop.index }}" name="selected_option" value="{{ option }}" {% if session.get('quiz_' ~ chapter.id ~ '_q' ~ question_index) == option %}checked{% endif %}>
+        <label for="option{{ loop.index }}">{{ option }}</label>
+    </div>
+    {% endfor %}
+
+    <button type="submit" name="action" value="save_next" {% if question_index == total_questions - 1 %}disabled{% endif %}>Save & Next</button>
+    {% if question_index > 0 %}
+    <button type="submit" name="action" value="previous">Previous</button>
+    {% endif %}
+    <button type="submit" name="action" value="submit" formaction="{{ url_for('submit_quiz', chapter_id=chapter.id) }}">Submit Quiz</button>
+</form>
+
+<a href="{{ url_for('dashboard') }}">Cancel Quiz</a>
+
+<script>
+    let timeLeft = 1800; // Set countdown time in seconds (30 minutes)
+    function startCountdown() {
+        const timerElement = document.getElementById('timer');
+        const formElement = document.querySelector('form');
+        const countdown = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                formElement.submit(); // Automatically submit the form when time is up
+            } else {
+                const hours = String(Math.floor(timeLeft / 3600)).padStart(2, '0');
+                const minutes = String(Math.floor((timeLeft % 3600) / 60)).padStart(2, '0');
+                const seconds = String(timeLeft % 60).padStart(2, '0');
+                timerElement.textContent = `${hours}:${minutes}:${seconds}`;
+                timeLeft--;
+            }
+        }, 1000);
+    }
+    window.onload = startCountdown;
+
+    function validateSelection() {
+        const action = document.activeElement.getAttribute('name'); // Get the clicked button's name
+        if (action === 'action' && document.activeElement.value !== 'submit') {
+            return true; // Allow navigation without validation for Save & Next or Previous
+        }
+
+        const options = document.getElementsByName('selected_option');
+        for (let option of options) {
+            if (option.checked) {
+                return true; // An option is selected
+            }
+        }
+        alert('Please select an option before submitting the quiz.');
+        return false; // Prevent form submission for Submit if no option is selected
+    }
+</script>
+
+</body>
+</html>

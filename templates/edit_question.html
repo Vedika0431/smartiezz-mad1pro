@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Question</title>
+</head>
+<body>
+
+    <h1>Edit Question</h1>
+    <form method="POST">
+        <label for="chapter_id">Chapter ID:</label>
+        <input type="number" id="chapter_id" name="chapter_id" value="{{ question.chapter_id }}" readonly>
+
+        <label for="quiz_level_name">Quiz Level:</label>
+        <input type="text" id="quiz_level_name" name="quiz_level_name" value="{{ question.quiz_level_name }}" readonly>
+
+        <label for="question_title">Question Title:</label>
+        <input type="text" id="question_title" name="question_title" value="{{ question.title }}" required>
+
+        <label for="question_summary">Question Summary:</label>
+        <textarea id="question_summary" name="question_summary" rows="3" required>{{ question.summary }}</textarea>
+
+        <label for="options">Options:</label>
+        <div>
+            <input type="text" id="option1" name="options[]" value="{{ question.options[0] }}" required>
+            <input type="text" id="option2" name="options[]" value="{{ question.options[1] }}" required>
+            <input type="text" id="option3" name="options[]" value="{{ question.options[2] }}" required>
+            <input type="text" id="option4" name="options[]" value="{{ question.options[3] }}" required>
+        </div>
+
+        <label for="correct_option">Correct Option (1-4):</label>
+        <input type="number" id="correct_option" name="correct_option" value="{{ question.options.index(question.correct_option) + 1 }}" min="1" max="4" required>
+
+        <button type="submit">Update Question</button>
+    </form>
+
+    <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+
+</body>
+</html>

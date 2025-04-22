@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/view_quiz.css') }}">
+</head>
+<body class="view-quiz">
+    <div class="quiz-container">
+        <h1 class="quiz-title">Quiz Details</h1>
+        <div class="quiz-details">
+            <p><strong>Quiz ID:</strong> {{ quiz.id }}</p>
+            <p><strong>Chapter:</strong> {{ quiz.chapter.name }}</p>
+            <p><strong>Subject:</strong> {{ quiz.chapter.subject.name }}</p>
+            <p><strong>Quiz Level:</strong> {{ quiz.quiz_level_name }}</p>
+            <p><strong>Date:</strong> {{ quiz.date }}</p>
+            <p><strong>Duration:</strong> {{ quiz.duration }}</p>
+        </div>
+        <div class="quiz-actions">
+            <a href="{{ url_for('start_quiz', quiz_type=quiz.quiz_level_name, subject_id=quiz.subject_id, chapter_id=quiz.chapter_id) }}" class="button-link">Start Quiz</a>
+            <a href="{{ url_for('user_dashboard') }}" class="button-link">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

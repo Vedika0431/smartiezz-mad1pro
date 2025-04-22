@@ -1,0 +1,60 @@
+body.view-quiz {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #FFE4C4; /* Bisque background */
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.quiz-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.quiz-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #CD853F; /* Peru color */
+    margin-bottom: 20px;
+}
+
+.quiz-details p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #333333;
+}
+
+.quiz-details strong {
+    color: #CD853F; /* Highlighted text */
+}
+
+.quiz-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #CD853F; /* Peru background */
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button-link:hover {
+    background-color: #8B4513; /* Saddle brown on hover */
+}

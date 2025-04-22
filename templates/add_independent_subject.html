@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Independent Subject</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Add New Subject</h2>
+        <form method="POST" action="{{ url_for('add_independent_subject') }}">
+            <div class="form-group">
+                <label for="subject_name">Subject Name</label>
+                <input type="text" class="form-control" id="subject_name" name="subject_name" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success mt-3">Add Subject</button>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary mt-3">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

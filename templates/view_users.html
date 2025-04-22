@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+</head>
+<body>
+
+<h1>All Users</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Email</th>
+            <th>Full Name</th>
+            <th>Qualification</th>
+            <th>Date of Birth</th>
+            <th>Is Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.full_name }}</td>
+            <td>{{ user.qualification }}</td>
+            <td>{{ user.dob }}</td>
+            <td>{{ 'Yes' if user.is_admin else 'No' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+
+</body>
+</html>

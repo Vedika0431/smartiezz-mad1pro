@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user_dashboard.css') }}">
+    
+</head>
+<body class="user-dashboard">
+
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <h2>
+            Smartizz<span class="logo">🎯</span>
+        </h2>
+        <nav>
+            <a href="{{ url_for('user_dashboard') }}">Home</a>
+            <a href="{{ url_for('scores') }}">Scores</a>
+            <a href="{{ url_for('user_summary') }}">User Summary</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+            <span>Welcome, {{ user.full_name }}</span>
+        </nav>
+    </header>
+
+    <!-- Control Panel (Filters + Buttons) -->
+    <section class="dashboard-control-panel">
+        <form method="GET" action="{{ url_for('user_dashboard') }}">
+            <div>
+                <label for="quiz_level">Quiz Level:</label>
+                <select id="quiz_level" name="quiz_level">
+                    <option value="">All Levels</option>
+                    {% for level in quiz_levels %}
+                    <option value="{{ level.level_name }}" {% if level.level_name == selected_level %}selected{% endif %}>
+                        {{ level.level_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label for="subject">Subject:</label>
+                <select id="subject" name="subject">
+                    <option value="">All Subjects</option>
+                    {% for subject in subjects %}
+                    <option value="{{ subject.id }}" {% if subject.id == selected_subject %}selected{% endif %}>
+                        {{ subject.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit">Filter</button>
+        </form>
+    </section>
+
+    <!-- Quizzes Table -->
+    <section class="dashboard-quizzes">
+        <h3>Upcoming Quizzes</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Quiz ID</th>
+                    <th>No. of Questions</th>
+                    <th>Date</th>
+                    <th>Duration</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for quiz in upcoming_quizzes %}
+                <tr>
+                    <td>{{ quiz.id }}</td>
+                    <td>{{ quiz.chapter.questions|length }}</td>
+                    <td>{{ quiz.date }}</td>
+                    <td>{{ quiz.duration }}</td>
+                    <td>
+                        <form method="GET" action="{{ url_for('view_quiz', quiz_id=quiz.id) }}" style="display:inline;">
+                            <button type="submit">View</button>
+                        </form>
+                        <form method="GET" action="{{ url_for('start_quiz', quiz_type=quiz.quiz_level_name, subject_id=quiz.subject_id, chapter_id=quiz.chapter_id) }}" style="display:inline;">
+                            <button type="submit">Start</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+</body>
+</html>

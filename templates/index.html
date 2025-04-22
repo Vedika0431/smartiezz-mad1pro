@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Master</title>
+</head>
+<body>
+
+    <h1>Welcome to Quiz Master!</h1>
+    <p><a href="{{ url_for('login') }}">Login</a> or <a href="{{ url_for('register') }}">Register</a> to start.</p>
+
+    <h1>Add Subject</h1>
+    <form action="/add_subject" method="POST">
+        <input type="text" name="subject_name" placeholder="Enter subject" required>
+        <select name="quiz_type" required>
+            <option value="quiz1">Quiz 1</option>
+            <option value="quiz2">Quiz 2</option>
+            <option value="end_term">End Term</option>
+        </select>
+        <button type="submit">Add Subject</button>
+    </form>
+
+    <h2>Quiz 1 Subjects</h2>
+    <ul>
+        {% for subject in quiz1_subjects %}
+        <li>{{ subject.name }}</li> <!-- Display the subject name -->
+        {% endfor %}
+    </ul>
+
+    <h2>Quiz 2 Subjects</h2>
+    <ul>
+        {% for subject in quiz2_subjects %}
+        <li>{{ subject.name }}</li> <!-- Display the subject name -->
+        {% endfor %}
+    </ul>
+
+    <h2>End Term Subjects</h2>
+    <ul>
+        {% for subject in end_term_subjects %}
+        <li>{{ subject.name }}</li> <!-- Display the subject name -->
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

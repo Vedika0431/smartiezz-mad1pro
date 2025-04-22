@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Quiz</title>
+</head>
+<body>
+
+    <h2>Edit Quiz: {{ chapter.name }}</h2>
+    <form method="POST">
+        <label for="chapter_name">Quiz Name:</label>
+        <input type="text" id="chapter_name" name="chapter_name" value="{{ chapter.name }}" required>
+        
+        <label for="num_questions">Number of Questions:</label>
+        <input type="number" id="num_questions" name="num_questions" value="{{ chapter.num_questions }}" min="0" required>
+        
+        <button type="submit">Update Quiz</button>
+    </form>
+    
+    <a href="{{ url_for('admin_quiz') }}">Back to Quizzes</a>
+
+</body>
+</html>

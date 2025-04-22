@@ -1,0 +1,183 @@
+body.user-dashboard {
+    background-color: #FFE4C4; /* Bisque background for user dashboard */
+    color: #000000;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+.logo {
+    font-size: 10rem; /* Try increasing size further */
+    display: inline-block;
+    line-height: 1;
+    margin-right: 10px;
+}
+/* Dashboard header styling */
+.dashboard-header {
+     /* Limit the width for better fit */
+    width: 100%;
+    max-width: 1300px;
+
+    margin: 20px auto; /* Center the header */
+    background-color: #CD853F; /* Peru background */
+    color: #ffffff;
+    padding: 20px 30px; /* Adjust padding for better spacing */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+    transition: box-shadow 0.3s ease;
+}
+
+.dashboard-header:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slight hover effect */
+}
+
+.dashboard-header h2 {
+    margin: 0;
+    font-size: 2.2rem; /* Bigger font size for better readability */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    
+}
+
+/* Navigation links */
+.dashboard-header nav {
+    display: flex;
+    gap: 20px; /* Increase spacing between links */
+    align-items: center;
+}
+
+.dashboard-header nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem; /* Bigger font size for links */
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-header nav a:hover {
+    background-color: #8B4513; /* Saddle brown on hover */
+}
+
+/* User welcome text */
+.dashboard-header span {
+    margin-left: 15px;
+    font-size: 1.2rem; /* Bigger font size for welcome text */
+}
+
+/* Dashboard control panel styling */
+.dashboard-control-panel {
+    width: 100%;
+    max-width: 1300px; /* Limit the width for better fit */
+    margin: 20px auto; /* Center the control panel */
+    background-color: #F4A460; /* Sandy brown background */
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.dashboard-control-panel form {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.dashboard-control-panel label {
+    font-weight: bold;
+    font-size: 1.2rem; /* Bigger font size for labels */
+}
+
+.dashboard-control-panel select {
+    padding: 10px;
+    border: 1px solid #CD853F;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 1rem; /* Bigger font size for dropdowns */
+}
+
+.dashboard-control-panel button {
+    padding: 10px 20px;
+    background-color: #DD5432;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem; /* Bigger font size for buttons */
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-control-panel button:hover {
+    background-color: #C1440E;
+}
+
+/* Dashboard quizzes table styling */
+.dashboard-quizzes {
+    
+    width: 1400px; /* Set to any fixed value you prefer */
+    max-width: 100%; /* Prevent overflow issues */
+    margin: 20px auto;
+    /*Center the quizzes section */
+    padding: 20px;  
+}
+
+.dashboard-quizzes h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.8rem; /* Bigger font size for section title */
+    font-weight: bold;
+}
+
+.dashboard-quizzes table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-quizzes table th, .dashboard-quizzes table td {
+    border: 1px solid #CD853F;
+    padding: 15px; /* Increase padding for better spacing */
+    text-align: center;
+    font-size: 1.1rem; /* Bigger font size for table content */
+}
+
+.dashboard-quizzes table th {
+    background-color: #CD853F; /* Peru background for table header */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.dashboard-quizzes table tr:nth-child(even) {
+    background-color: #F5DEB3; /* Wheat background for even rows */
+}
+
+.dashboard-quizzes table tr:hover {
+    background-color: #FFDAB9; /* Peach puff on hover */
+}
+
+.dashboard-quizzes table button {
+    padding: 8px 15px;
+    background-color: #CD853F; /* Peru background for buttons */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem; /* Bigger font size for buttons */
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-quizzes table button:hover {
+    background-color: #8B4513; /* Saddle brown on hover */
+}

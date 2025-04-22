@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ "Admin" if user_type == "admin" else "User" }} Summary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/summary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user_dashboard.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="summary-page">
+
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <h2>
+            Smartizz<span class="logo">🎯</span>
+        </h2>
+        <nav>
+            <a href="{{ url_for('user_dashboard') }}">Home</a>
+            <a href="{{ url_for('scores') }}">Scores</a>
+            <a href="{{ url_for('user_summary') }}">User Summary</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+            <span>Welcome, {{ current_user.full_name }}</span>
+        </nav>
+    </header>
+
+    <!-- Header -->
+    <header class="summary-header">
+        <h1>{{ "Admin" if user_type == "admin" else "User" }} Summary</h1>
+    </header>
+
+    <!-- Charts Section -->
+    <div class="charts-container">
+        <!-- Bar Chart -->
+        <div class="chart-box">
+            <h2>Subject-wise Quizzes (Overall)</h2>
+            {% if subject_names %}
+            <canvas id="subjectBarChart" class="chart-canvas"></canvas>
+            {% else %}
+            <p>No quizzes attempted yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Pie Chart -->
+        <div class="chart-box">
+            <h2>Quizzes Attempted This Month</h2>
+            {% if month_subject_names %}
+            <canvas id="monthPieChart" class="chart-canvas"></canvas>
+            {% else %}
+            <p>No quizzes attempted this month.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="summary-footer">
+        <a href="{{ url_for('user_dashboard') if user_type == 'user' else url_for('admin_dashboard') }}" class="button-link">Back to Dashboard</a>
+    </footer>
+
+    <script>
+        {% if subject_names %}
+        // Subject Bar Chart (Overall)
+        new Chart(document.getElementById('subjectBarChart'), {
+            type: 'bar',
+            data: {
+                labels: {{ subject_names | tojson }},
+                datasets: [{
+                    label: 'Quizzes Attempted',
+                    data: {{ subject_quiz_counts | tojson }},
+                    backgroundColor: '#5470C6'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false
+            }
+        });
+        {% endif %}
+
+        {% if month_subject_names %}
+        // Pie Chart (Quizzes Attempted This Month)
+        new Chart(document.getElementById('monthPieChart'), {
+            type: 'pie',
+            data: {
+                labels: {{ month_subject_names | tojson }},
+                datasets: [{
+                    data: {{ month_subject_quiz_counts | tojson }},
+                    backgroundColor: ['#FF9999', '#FFCC99', '#FF6666', '#66CC99', '#6699FF']
+                }]
+            },
+            options: {
+                maintainAspectRatio: false
+            }
+        });
+        {% endif %}
+    </script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,25 @@
+{% block content %}
+<h1>Add Quiz</h1>
+<form method="POST">
+    <label for="chapter_id">Chapter ID:</label>
+    <input type="number" id="chapter_id" name="chapter_id" required>
+
+    <label for="quiz_level">Quiz Level:</label>
+    <select id="quiz_level" name="quiz_level" required>
+        <option value="" disabled selected>Select Quiz Level</option>
+        {% for level in quiz_levels %}
+        <option value="{{ level.level_name }}">{{ level.level_name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="date">Date (xx/xx/yyyy):</label>
+    <input type="text" id="date" name="date" placeholder="e.g., 12/31/2023" required>
+
+    <label for="duration">Duration (hh:mm):</label>
+    <input type="text" id="duration" name="duration" placeholder="e.g., 01:30" required>
+
+    <button type="submit">Add Quiz</button>
+</form>
+
+<a href="{{ url_for('admin_quiz') }}">Back to Quizzes</a>
+{% endblock %}

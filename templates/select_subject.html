@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Subject</title>
+</head>
+<body>
+
+<h2>Select Subject for {{ quiz_type }}</h2>
+<form method="POST">
+    <label for="subject_id">Subject:</label>
+    <select name="subject_id" id="subject_id">
+        {% for subject in subjects %}
+            <option value="{{ subject.id }}">{{ subject.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Next</button>
+</form>
+
+</body>
+</html>

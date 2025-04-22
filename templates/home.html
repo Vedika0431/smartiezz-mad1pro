@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body class="home">
+    <div class="home-container">
+        <h1 class="home-title">Welcome to Smartizz<span class="logo">🎯</span>
+        </h1>
+        <p class="home-subtitle">Upscale with quizzes!</p>
+        <a href="{{ url_for('login') }}" class="button-link">Sign In</a>
+        <a href="{{ url_for('register') }}" class="button-link">Create an account</a>
+    </div>
+</body>
+</html>
